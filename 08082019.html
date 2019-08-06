@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>С Днём Рождения!!!</title>
+	<link rel="image_src" href="https://md-eksperiment.org/images/posts/a1c81974-396e-4321-b8e7-5f792aaa8064.jpeg">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		body{margin:0;background:#f1f1f1;}
+		.item{position:absolute;width:260px;height:260px;top:calc(50% - 130px);left:calc(50% - 130px);box-shadow:0px 1px 14px 1px #ccc;border-radius:15px;overflow:hidden;}
+		.item img{max-width:260px;max-height:260px;position:absolute;display:block;height:100%;width:100%;}
+		.whiteeff{position:absolute;height:100%;width:100%;background:#fff;z-index:99999999;opacity:0;}
+	</style>
+</head>
+<body onload="start();">
+	<div class="item">
+		<img src="https://image.freepik.com/free-vector/_18840-11.jpg" style="z-index:1" id="img1">
+		<img src="https://www.davno.ru/assets/images/cards/big/birthday-1167.jpg" style="z-index:2;display:none;" id="img2">
+		<img src="https://img.freepik.com/free-vector/_1308-27369.jpg?size=626&ext=jpg" style="z-index:3;display:none;" id="img3">
+		<div class="whiteeff" id="whiteeff"></div>
+	</div>
+	<audio src="ChetAtkins-MisterSandman.mp3" style="display:none;visibility:hidden;" id="music" preload autoplay></audio>
+	<script type="text/javascript">
+		var picParam = 1;
+		function start(){
+			//document.getElementById('music').play();
+			effect(changePic);
+		}
+
+		function changePic(){
+			if (picParam == 1){
+				document.getElementById('img2').style.display = 'block';
+				document.getElementById('img1').style.display = 'none';
+				document.getElementById('img3').style.display = 'none';
+				picParam += 1;
+				return;
+			}
+			if (picParam == 2){
+				document.getElementById('img3').style.display = 'block';
+				document.getElementById('img2').style.display = 'none';
+				document.getElementById('img1').style.display = 'none';
+				picParam += 1;
+				return;
+			}
+			if (picParam == 3){
+				document.getElementById('img1').style.display = 'block';
+				document.getElementById('img3').style.display = 'none';
+				document.getElementById('img2').style.display = 'none';
+				picParam = 1;
+				return;
+			}
+		}
+
+		function effect(funny){
+			var opacity = 0;
+			var unopacity = 1;
+			var funnyParam = 0;
+			var inter = setInterval(function(){
+				document.getElementById('whiteeff').style.opacity = String(opacity + 0.01);
+				opacity = opacity + 0.01;
+				if (opacity >= 1){
+					if (funnyParam == 0){
+						funny();
+						funnyParam=1;
+					}
+					document.getElementById('whiteeff').style.opacity = String(unopacity - 0.01);
+					unopacity = unopacity - 0.01;
+					if (unopacity <= 0) {
+						opacity = 0;
+						unopacity = 1;
+						funnyParam = 0;
+						clearInterval(inter);
+						effect(changePic);
+					}
+				}
+			},40);
+		}
+	</script>
+</body>
+</html>
